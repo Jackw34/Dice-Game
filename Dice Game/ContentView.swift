@@ -16,6 +16,7 @@ struct ContentView: View {
     
     
     var body: some View {
+        // Titile and Instructions view
         NavigationView {
             VStack {
                 
@@ -25,7 +26,7 @@ struct ContentView: View {
                 }
                 
                 
-                
+                //first Image
                 Image("pips \(randomValue)")
                     .resizable()
                     .frame(width: 150, height: 150, alignment: .center)
@@ -40,6 +41,7 @@ struct ContentView: View {
 
                     }
                 Spacer()
+                // Second Image
                 Image("Second \(secondRandomValue)")
                     .resizable()
                     .frame(width: 150, height: 150, alignment: .center)
@@ -52,6 +54,7 @@ struct ContentView: View {
                             secondRotation += 360
                         }
                     }
+                // Display for the score
                 Text("Score")
                     .font(.largeTitle)
                 Text("\(secondRandomValue)")
@@ -63,6 +66,7 @@ struct ContentView: View {
             .navigationTitle("Roll The Dice Game")
         }
     }
+    // First random interger generator
     func chooseRandom(times:Int) {
         if times > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -71,6 +75,7 @@ struct ContentView: View {
             }
         }
     }
+    // Second random interger generator
     func secondChooseRandom(times:Int) {
         if times > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -86,5 +91,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-// play sounds when rolled
-// add a scoring system that connects with 2 users
