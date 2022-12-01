@@ -12,20 +12,16 @@ struct ContentView: View {
     @State private var rotation = 0.0
     @State private var secondRandomValue = 0
     @State private var secondRotation = 0.0
-    @State private var isShowingDetailView = false
-    
+    @State private var winner = ""
     
     var body: some View {
         // Titile and Instructions view
         NavigationView {
             VStack {
-                
                 NavigationLink(destination: Instructions()) {
                     Text("Instructions For The Game")
                         .font(.system(size: 25))
                 }
-                
-                
                 //first Image
                 Image("pips \(randomValue)")
                     .resizable()
@@ -38,7 +34,14 @@ struct ContentView: View {
                         withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
                             rotation += 360
                         }
-
+                        // determines winner 
+                        if randomValue != 0 && secondRandomValue != 0 {
+                            if randomValue > secondRandomValue {
+                                winner = "Player 1 won"
+                            } else if randomValue == secondRandomValue {
+                                winner = "Tie"
+                            }
+                        }
                     }
                 Spacer()
                 // Second Image
@@ -53,7 +56,16 @@ struct ContentView: View {
                         withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
                             secondRotation += 360
                         }
+                        // determines winner
+                        if randomValue != 0 && secondRandomValue != 0 {
+                            if randomValue > secondRandomValue {
+                                winner = "Player 2 won"
+                            } else if randomValue == secondRandomValue {
+                                winner = "Tie"
+                            }
+                        }
                     }
+                Text(winner)
                 // Display for the score
                 Text("Score")
                     .font(.largeTitle)
@@ -62,9 +74,11 @@ struct ContentView: View {
                 Text("\(randomValue)")
                     .font(.largeTitle)
                 
+                
             }
             .navigationTitle("Roll The Dice Game")
         }
+        
     }
     // First random interger generator
     func chooseRandom(times:Int) {
