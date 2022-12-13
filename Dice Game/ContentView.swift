@@ -30,30 +30,7 @@ struct ContentView: View {
                         .font(.system(size: 25))
                 }
                 //first Image
-                Image("pips \(randomValue)")
-                    .resizable()
-                    .frame(width: 150, height: 150, alignment: .center)
-                    .rotationEffect(.degrees(rotation))
-                    .rotation3DEffect(.degrees(rotation), axis: (x: 1, y: 1, z: 0))
-                    .padding()
-                    .onTapGesture {
-                        chooseRandom(times: 3)
-                        withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
-                            rotation += 360
-                        }
-                        
-                        // determines winner 
-                        if randomValue != 0 && secondRandomValue != 0 {
-                            if randomValue > secondRandomValue {
-                                winner = "Player 1 won"
-                                playSound(name: "HighScore")
-                            } else if randomValue == secondRandomValue {
-                                winner = "Tie"
-                                playSound(name: "Lose")
-                            }
-                        }
-                    }
-                Spacer()
+               
                 // Second Image
                 Image("Second \(secondRandomValue)")
                     .resizable()
@@ -69,6 +46,30 @@ struct ContentView: View {
                         // determines winner
                         if randomValue != 0 && secondRandomValue != 0 {
                             if randomValue < secondRandomValue {
+                                winner = "Player 1 won"
+                                playSound(name: "HighScore")
+                            } else if randomValue == secondRandomValue {
+                                winner = "Tie"
+                                playSound(name: "Lose")
+                            }
+                        }
+                    }
+                Spacer()
+                Image("pips \(randomValue)")
+                    .resizable()
+                    .frame(width: 150, height: 150, alignment: .center)
+                    .rotationEffect(.degrees(rotation))
+                    .rotation3DEffect(.degrees(rotation), axis: (x: 1, y: 1, z: 0))
+                    .padding()
+                    .onTapGesture {
+                        chooseRandom(times: 3)
+                        withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
+                            rotation += 360
+                        }
+                        
+                        // determines winner
+                        if randomValue != 0 && secondRandomValue != 0 {
+                            if randomValue > secondRandomValue {
                                 winner = "Player 2 won"
                                 playSound(name: "HighScore")
                             } else if randomValue == secondRandomValue {
