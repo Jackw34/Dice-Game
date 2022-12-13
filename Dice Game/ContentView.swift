@@ -18,8 +18,8 @@ struct ContentView: View {
     @State private var winner = ""
     
     //Sounds
-    @ObservedObject private var soundScore = AudioPlayer(name: "HighScore", type: "wav")
-    @ObservedObject private var soundLose = AudioPlayer(name: "Lose", type: "wav")
+ @State  private var soundScore = "HighScore"
+  @State private var soundLose = "Lose"
     
     var body: some View {
         // Titile and Instructions view
@@ -47,10 +47,10 @@ struct ContentView: View {
                         if randomValue != 0 && secondRandomValue != 0 {
                             if randomValue < secondRandomValue {
                                 winner = "Player 1 won"
-                                playSound(name: "HighScore")
+                                soundScore = "HighScore"
                             } else if randomValue == secondRandomValue {
                                 winner = "Tie"
-                                playSound(name: "Lose")
+                                soundLose = "Lose"
                             }
                         }
                     }
@@ -71,10 +71,10 @@ struct ContentView: View {
                         if randomValue != 0 && secondRandomValue != 0 {
                             if randomValue > secondRandomValue {
                                 winner = "Player 2 won"
-                                playSound(name: "HighScore")
+                                soundScore = "HighScore"
                             } else if randomValue == secondRandomValue {
                                 winner = "Tie"
-                                playSound(name: "Lose")
+                                soundLose = "Lose"
                             }
                         }
                     }
@@ -109,16 +109,6 @@ struct ContentView: View {
                 secondRandomValue = Int.random(in: 1...6)
                 secondChooseRandom(times: times - 1)
             }
-        }
-    }
-    func playSound(name : String) {
-        switch (name) {
-        case "HighScore":
-            soundScore.start()
-        case "Lose":
-            soundLose.start()
-        default:
-            return
         }
     }
 }
