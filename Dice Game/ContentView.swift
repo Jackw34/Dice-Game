@@ -6,20 +6,13 @@
 //
 
 import SwiftUI
-// fix socring
-// fix UI in intructions
-// move the scoring for die up
-// add better UI for content view
+
 struct ContentView: View {
     @State private var randomValue = 0
     @State private var rotation = 0.0
     @State private var secondRandomValue = 0
     @State private var secondRotation = 0.0
     @State private var winner = ""
-    
-    //Sounds
- @State  private var soundScore = "HighScore"
-  @State private var soundLose = "Lose"
     
     var body: some View {
         // Titile and Instructions view
@@ -30,7 +23,7 @@ struct ContentView: View {
                         .font(.system(size: 25))
                 }
                 //first Image
-               
+                
                 // Second Image
                 Image("Second \(secondRandomValue)")
                     .resizable()
@@ -47,10 +40,8 @@ struct ContentView: View {
                         if randomValue != 0 && secondRandomValue != 0 {
                             if randomValue < secondRandomValue {
                                 winner = "Player 1 won"
-                                soundScore = "HighScore"
                             } else if randomValue == secondRandomValue {
                                 winner = "Tie"
-                                soundLose = "Lose"
                             }
                         }
                     }
@@ -71,10 +62,8 @@ struct ContentView: View {
                         if randomValue != 0 && secondRandomValue != 0 {
                             if randomValue > secondRandomValue {
                                 winner = "Player 2 won"
-                                soundScore = "HighScore"
                             } else if randomValue == secondRandomValue {
                                 winner = "Tie"
-                                soundLose = "Lose"
                             }
                         }
                     }
@@ -112,10 +101,9 @@ struct ContentView: View {
         }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
-// end of code 
+// end of code
